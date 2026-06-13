@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { createClientOnlyRoute, RouteErrorBoundary } from "../components/ClientRoute";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/borrow")({
   ssr: false,
-  component: createClientOnlyRoute(() => import("../components/route-pages/DashboardPage")),
+  component: createClientOnlyRoute(() => import("../components/route-pages/BorrowPage")),
   errorComponent: RouteErrorBoundary,
 });

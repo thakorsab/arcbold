@@ -4,6 +4,6 @@ import { createClientOnlyRoute, RouteErrorBoundary } from "../components/ClientR
 
 export const Route = createFileRoute("/supply")({
   ssr: false,
-  component: createClientOnlyRoute(() => import("./supply.client")),
+  component: createClientOnlyRoute(() => import("../components/route-pages/SupplyPage")),
   errorComponent: RouteErrorBoundary,
 });
