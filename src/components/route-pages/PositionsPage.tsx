@@ -1,19 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useUserPositionIds, useUserSupplyIds } from "../lib/web3/hooks";
-import { ToastProvider } from "../components/TxToast";
-import { BorrowPositionCard, SupplyPositionCard } from "../components/PositionRow";
+import { useUserPositionIds, useUserSupplyIds } from "../../lib/web3/hooks";
+import { ToastProvider } from "../TxToast";
+import { BorrowPositionCard, SupplyPositionCard } from "../PositionRow";
 
-export const Route = createFileRoute("/positions/client")({
-  component: () => (
+export default function PositionsRoute() {
+  return (
     <ToastProvider>
       <PositionsPage />
     </ToastProvider>
-  ),
-});
+  );
+}
 
 function PositionsPage() {
   const { isConnected } = useAccount();

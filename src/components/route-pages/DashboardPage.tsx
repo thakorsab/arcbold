@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 
-import { Counter } from "../components/Counter";
-import { fromUnitsNum } from "../lib/web3/format";
-import { useTVL, useTotals } from "../lib/web3/hooks";
+import { Counter } from "../Counter";
+import { fromUnitsNum } from "../../lib/web3/format";
+import { useTVL, useTotals } from "../../lib/web3/hooks";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },

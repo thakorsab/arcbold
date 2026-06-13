@@ -1,18 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useAccount, useReadContract, useReadContracts } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { ARCBOLD_ABI } from "../lib/web3/abi";
-import { ADMIN_ADDRESS, ARCBOLD_ADDRESS } from "../lib/web3/config";
-import { useTVL } from "../lib/web3/hooks";
-import { fromUnits, shortAddress } from "../lib/web3/format";
+import { ARCBOLD_ABI } from "../../lib/web3/abi";
+import { ADMIN_ADDRESS, ARCBOLD_ADDRESS } from "../../lib/web3/config";
+import { useTVL } from "../../lib/web3/hooks";
+import { fromUnits, shortAddress } from "../../lib/web3/format";
 
-export const Route = createFileRoute("/admin/client")({
-  component: AdminPage,
-});
-
-function AdminPage() {
+export default function AdminPage() {
   const { address, isConnected } = useAccount();
   const isAdmin = isConnected && address?.toLowerCase() === ADMIN_ADDRESS.toLowerCase();
 

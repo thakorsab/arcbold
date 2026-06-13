@@ -1,22 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import { ARCBOLD_ABI, ERC20_ABI } from "../lib/web3/abi";
-import { ARCBOLD_ADDRESS, USDC_ADDRESS, EURC_ADDRESS } from "../lib/web3/config";
-import { useAllowance, useTokenBalance, useUserPositionIds } from "../lib/web3/hooks";
-import { fromUnits, toUnits } from "../lib/web3/format";
-import { HealthGauge } from "../components/HealthGauge";
-import { ToastProvider, useToast } from "../components/TxToast";
-import { BorrowPositionCard } from "../components/PositionRow";
+import { ARCBOLD_ABI, ERC20_ABI } from "../../lib/web3/abi";
+import { ARCBOLD_ADDRESS, USDC_ADDRESS, EURC_ADDRESS } from "../../lib/web3/config";
+import { useAllowance, useTokenBalance, useUserPositionIds } from "../../lib/web3/hooks";
+import { fromUnits, toUnits } from "../../lib/web3/format";
+import { HealthGauge } from "../HealthGauge";
+import { ToastProvider, useToast } from "../TxToast";
+import { BorrowPositionCard } from "../PositionRow";
 
-export const Route = createFileRoute("/borrow/client")({
-  component: () => (
+export default function BorrowRoute() {
+  return (
     <ToastProvider>
       <BorrowPage />
     </ToastProvider>
-  ),
-});
+  );
+}
 
 function BorrowPage() {
   const { isConnected } = useAccount();

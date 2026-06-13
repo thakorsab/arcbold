@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 
-import { SupplyPositionCard } from "../components/PositionRow";
-import { ToastProvider, useToast } from "../components/TxToast";
-import { ARCBOLD_ABI, ERC20_ABI } from "../lib/web3/abi";
-import { ARCBOLD_ADDRESS, EURC_ADDRESS, USDC_ADDRESS } from "../lib/web3/config";
-import { fromUnits, toUnits } from "../lib/web3/format";
-import { useAllowance, useTokenBalance, useTotals, useUserSupplyIds } from "../lib/web3/hooks";
+import { SupplyPositionCard } from "../PositionRow";
+import { ToastProvider, useToast } from "../TxToast";
+import { ARCBOLD_ABI, ERC20_ABI } from "../../lib/web3/abi";
+import { ARCBOLD_ADDRESS, EURC_ADDRESS, USDC_ADDRESS } from "../../lib/web3/config";
+import { fromUnits, toUnits } from "../../lib/web3/format";
+import { useAllowance, useTokenBalance, useTotals, useUserSupplyIds } from "../../lib/web3/hooks";
 
 export default function SupplyRoute() {
   return (
