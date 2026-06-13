@@ -35,7 +35,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center px-4 relative z-10">
       <div className="text-center max-w-md">
         <h1 className="font-display text-2xl font-black text-white">Something broke</h1>
-        <p className="mt-2 text-sm text-[#8892A4]">{error.message}</p>
+        <p className="mt-2 text-sm text-[#8892A4]">An unexpected error occurred. Please try again.</p>
+        {import.meta.env.DEV && (
+          <p className="mt-2 text-xs text-[#8892A4]/60 font-mono break-all">{error.message}</p>
+        )}
         <button
           onClick={() => { router.invalidate(); reset(); }}
           className="mt-6 btn-neon-orange"
