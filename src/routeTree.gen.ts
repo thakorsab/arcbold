@@ -10,29 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SupplyRouteImport } from './routes/supply'
-import { Route as PositionsRouteImport } from './routes/positions'
-import { Route as BorrowRouteImport } from './routes/borrow'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PositionsClientRouteImport } from './routes/positions.client'
+import { Route as BorrowClientRouteImport } from './routes/borrow.client'
+import { Route as AdminClientRouteImport } from './routes/admin.client'
 
 const SupplyRoute = SupplyRouteImport.update({
   id: '/supply',
   path: '/supply',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PositionsRoute = PositionsRouteImport.update({
-  id: '/positions',
-  path: '/positions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BorrowRoute = BorrowRouteImport.update({
-  id: '/borrow',
-  path: '/borrow',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -40,43 +25,69 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PositionsClientRoute = PositionsClientRouteImport.update({
+  id: '/positions/client',
+  path: '/positions/client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BorrowClientRoute = BorrowClientRouteImport.update({
+  id: '/borrow/client',
+  path: '/borrow/client',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminClientRoute = AdminClientRouteImport.update({
+  id: '/admin/client',
+  path: '/admin/client',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
-  '/borrow': typeof BorrowRoute
-  '/positions': typeof PositionsRoute
   '/supply': typeof SupplyRoute
+  '/admin/client': typeof AdminClientRoute
+  '/borrow/client': typeof BorrowClientRoute
+  '/positions/client': typeof PositionsClientRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
-  '/borrow': typeof BorrowRoute
-  '/positions': typeof PositionsRoute
   '/supply': typeof SupplyRoute
+  '/admin/client': typeof AdminClientRoute
+  '/borrow/client': typeof BorrowClientRoute
+  '/positions/client': typeof PositionsClientRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
-  '/borrow': typeof BorrowRoute
-  '/positions': typeof PositionsRoute
   '/supply': typeof SupplyRoute
+  '/admin/client': typeof AdminClientRoute
+  '/borrow/client': typeof BorrowClientRoute
+  '/positions/client': typeof PositionsClientRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/borrow' | '/positions' | '/supply'
+  fullPaths:
+    | '/'
+    | '/supply'
+    | '/admin/client'
+    | '/borrow/client'
+    | '/positions/client'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/borrow' | '/positions' | '/supply'
-  id: '__root__' | '/' | '/admin' | '/borrow' | '/positions' | '/supply'
+  to: '/' | '/supply' | '/admin/client' | '/borrow/client' | '/positions/client'
+  id:
+    | '__root__'
+    | '/'
+    | '/supply'
+    | '/admin/client'
+    | '/borrow/client'
+    | '/positions/client'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
-  BorrowRoute: typeof BorrowRoute
-  PositionsRoute: typeof PositionsRoute
   SupplyRoute: typeof SupplyRoute
+  AdminClientRoute: typeof AdminClientRoute
+  BorrowClientRoute: typeof BorrowClientRoute
+  PositionsClientRoute: typeof PositionsClientRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -88,27 +99,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupplyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/positions': {
-      id: '/positions'
-      path: '/positions'
-      fullPath: '/positions'
-      preLoaderRoute: typeof PositionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/borrow': {
-      id: '/borrow'
-      path: '/borrow'
-      fullPath: '/borrow'
-      preLoaderRoute: typeof BorrowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -116,15 +106,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/positions/client': {
+      id: '/positions/client'
+      path: '/positions/client'
+      fullPath: '/positions/client'
+      preLoaderRoute: typeof PositionsClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/borrow/client': {
+      id: '/borrow/client'
+      path: '/borrow/client'
+      fullPath: '/borrow/client'
+      preLoaderRoute: typeof BorrowClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/client': {
+      id: '/admin/client'
+      path: '/admin/client'
+      fullPath: '/admin/client'
+      preLoaderRoute: typeof AdminClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
-  BorrowRoute: BorrowRoute,
-  PositionsRoute: PositionsRoute,
   SupplyRoute: SupplyRoute,
+  AdminClientRoute: AdminClientRoute,
+  BorrowClientRoute: BorrowClientRoute,
+  PositionsClientRoute: PositionsClientRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

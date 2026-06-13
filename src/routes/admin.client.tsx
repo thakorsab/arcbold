@@ -8,7 +8,7 @@ import { ADMIN_ADDRESS, ARCBOLD_ADDRESS } from "../lib/web3/config";
 import { useTVL } from "../lib/web3/hooks";
 import { fromUnits, shortAddress } from "../lib/web3/format";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/admin/client")({
   component: AdminPage,
 });
 

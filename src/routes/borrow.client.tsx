@@ -10,7 +10,7 @@ import { HealthGauge } from "../components/HealthGauge";
 import { ToastProvider, useToast } from "../components/TxToast";
 import { BorrowPositionCard } from "../components/PositionRow";
 
-export const Route = createFileRoute("/borrow")({
+export const Route = createFileRoute("/borrow/client")({
   component: () => (
     <ToastProvider>
       <BorrowPage />

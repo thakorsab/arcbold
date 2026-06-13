@@ -7,7 +7,7 @@ import { useUserPositionIds, useUserSupplyIds } from "../lib/web3/hooks";
 import { ToastProvider } from "../components/TxToast";
 import { BorrowPositionCard, SupplyPositionCard } from "../components/PositionRow";
 
-export const Route = createFileRoute("/positions")({
+export const Route = createFileRoute("/positions/client")({
   component: () => (
     <ToastProvider>
       <PositionsPage />
