@@ -29,7 +29,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               >
                 <div className="font-display font-bold text-white">{t.title}</div>
                 {t.hash && (
-                  <a href={`https://testnet.arcscan.app/tx/${t.hash}`} target="_blank" rel="noreferrer" className="text-xs font-mono-tech mt-1 block hover:underline" style={{ color }}>
+                  <a href={`https://testnet.arcscan.app/tx/${t.hash}`} target="_blank" rel="noopener noreferrer" className="text-xs font-mono-tech mt-1 block hover:underline" style={{ color }}>
                     View on ArcScan ↗
                   </a>
                 )}

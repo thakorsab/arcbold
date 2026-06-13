@@ -34,13 +34,11 @@ function Dashboard() {
       <section className="relative px-4 sm:px-6 pt-16 sm:pt-24 pb-12 max-w-7xl mx-auto">
         <div className="hero-glow" />
         <motion.div initial="hidden" animate="show" className="relative text-center">
-          <motion.h1 custom={0} variants={fadeUp} className="font-display font-black tracking-tighter leading-[0.85] italic text-[clamp(3.5rem,12vw,9rem)]">
-            <span className="text-white">LEND </span>
+          <motion.h1 custom={0} variants={fadeUp} className="font-display font-black tracking-tighter leading-[0.9] italic text-[clamp(2.25rem,7vw,5.5rem)] whitespace-nowrap">
+            <span className="text-white">SUPPLY </span>
+            <span className="text-gradient-smart">ARC.</span>
+            <span className="text-white"> EARN </span>
             <span className="text-gradient-bold">BOLD.</span>
-          </motion.h1>
-          <motion.h1 custom={1} variants={fadeUp} className="font-display font-black tracking-tighter leading-[0.85] italic text-[clamp(3.5rem,12vw,9rem)] mt-1">
-            <span className="text-white">BORROW </span>
-            <span className="text-gradient-smart">SMART.</span>
           </motion.h1>
           <motion.p custom={2} variants={fadeUp} className="mt-6 max-w-2xl mx-auto text-[#8892A4] text-base sm:text-lg">
             Cross-currency lending on Arc Testnet. Supply USDC, borrow EURC. Or flip it.

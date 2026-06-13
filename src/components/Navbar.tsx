@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { WalletBadge } from "./WalletBadge";
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { Menu, X } from "lucide-react";
@@ -37,7 +37,7 @@ export function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          {mounted && <ConnectButton showBalance={false} chainStatus="none" accountStatus={{ smallScreen: "avatar", largeScreen: "full" }} />}
+          {mounted && <WalletBadge />}
           <button className="md:hidden p-2 text-white" onClick={() => setOpen(!open)} aria-label="menu">
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
