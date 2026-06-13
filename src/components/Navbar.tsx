@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { WalletBadge } from "./WalletBadge";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { Menu, X } from "lucide-react";
+
+const WalletBadge = lazy(() => import("./WalletBadge").then((module) => ({ default: module.WalletBadge })));
 
 const links = [
   { to: "/", label: "Dashboard" },
@@ -37,7 +38,11 @@ export function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          {mounted && <WalletBadge />}
+          {mounted && (
+            <Suspense fallback={null}>
+              <WalletBadge />
+            </Suspense>
+          )}
           <button className="md:hidden p-2 text-white" onClick={() => setOpen(!open)} aria-label="menu">
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
