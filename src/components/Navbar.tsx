@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { WalletBadge } from "./WalletBadge";
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
 import { Menu, X } from "lucide-react";
