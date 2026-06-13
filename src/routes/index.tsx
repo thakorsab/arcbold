@@ -34,7 +34,7 @@ function Dashboard() {
       <section className="relative px-4 sm:px-6 pt-16 sm:pt-24 pb-12 max-w-7xl mx-auto">
         <div className="hero-glow" />
         <motion.div initial="hidden" animate="show" className="relative text-center">
-          <motion.h1 custom={0} variants={fadeUp} className="font-display font-black tracking-tighter leading-[0.9] italic text-[clamp(2.25rem,7vw,5.5rem)] whitespace-nowrap">
+          <motion.h1 custom={0} variants={fadeUp} className="font-display font-black tracking-tighter leading-[0.9] italic text-[clamp(1.5rem,4.8vw,3.75rem)] whitespace-nowrap">
             <span className="text-white">SUPPLY </span>
             <span className="text-gradient-smart">ARC.</span>
             <span className="text-white"> EARN </span>
