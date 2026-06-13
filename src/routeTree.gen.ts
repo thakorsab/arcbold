@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SupplyRouteImport } from './routes/supply'
+import { Route as PositionsRouteImport } from './routes/positions'
+import { Route as BorrowRouteImport } from './routes/borrow'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SupplyRoute = SupplyRouteImport.update({
+  id: '/supply',
+  path: '/supply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PositionsRoute = PositionsRouteImport.update({
+  id: '/positions',
+  path: '/positions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BorrowRoute = BorrowRouteImport.update({
+  id: '/borrow',
+  path: '/borrow',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,72 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/borrow': typeof BorrowRoute
+  '/positions': typeof PositionsRoute
+  '/supply': typeof SupplyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/borrow': typeof BorrowRoute
+  '/positions': typeof PositionsRoute
+  '/supply': typeof SupplyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/borrow': typeof BorrowRoute
+  '/positions': typeof PositionsRoute
+  '/supply': typeof SupplyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/admin' | '/borrow' | '/positions' | '/supply'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/admin' | '/borrow' | '/positions' | '/supply'
+  id: '__root__' | '/' | '/admin' | '/borrow' | '/positions' | '/supply'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  BorrowRoute: typeof BorrowRoute
+  PositionsRoute: typeof PositionsRoute
+  SupplyRoute: typeof SupplyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/supply': {
+      id: '/supply'
+      path: '/supply'
+      fullPath: '/supply'
+      preLoaderRoute: typeof SupplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/positions': {
+      id: '/positions'
+      path: '/positions'
+      fullPath: '/positions'
+      preLoaderRoute: typeof PositionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/borrow': {
+      id: '/borrow'
+      path: '/borrow'
+      fullPath: '/borrow'
+      preLoaderRoute: typeof BorrowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +121,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  BorrowRoute: BorrowRoute,
+  PositionsRoute: PositionsRoute,
+  SupplyRoute: SupplyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
