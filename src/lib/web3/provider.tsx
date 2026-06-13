@@ -1,32 +1,18 @@
-import { ReactNode, useEffect, useState } from "react";
-import { WagmiProvider } from "wagmi";
-import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
-import "@rainbow-me/rainbowkit/styles.css";
-import { wagmiConfig } from "./config";
+import { lazy, Suspense, type ReactNode } from "react";
+import { useHydrated } from "@tanstack/react-router";
+
+const ClientWeb3Provider = lazy(() => import("./provider.client"));
 
 export function Web3Provider({ children }: { children: ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const hydrated = useHydrated();
 
-  if (!mounted) {
-    // SSR / pre-hydration: render nothing inside the wallet tree.
-    // Wagmi + RainbowKit reference browser-only globals that break Cloudflare Worker SSR.
+  if (!hydrated) {
     return <div suppressHydrationWarning />;
   }
 
   return (
-    <WagmiProvider config={wagmiConfig}>
-      <RainbowKitProvider
-        modalSize="compact"
-        theme={darkTheme({
-          accentColor: "#FF6B00",
-          accentColorForeground: "#0a0a0f",
-          borderRadius: "large",
-          overlayBlur: "small",
-        })}
-      >
-        {children}
-      </RainbowKitProvider>
-    </WagmiProvider>
+    <Suspense fallback={<div suppressHydrationWarning />}>
+      <ClientWeb3Provider>{children}</ClientWeb3Provider>
+    </Suspense>
   );
 }

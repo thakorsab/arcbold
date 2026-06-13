@@ -1,4 +1,4 @@
-import { http, createConfig } from "wagmi";
+import { http } from "wagmi";
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import type { Chain } from "viem";
 
@@ -27,5 +27,5 @@ export const wagmiConfig = getDefaultConfig({
   transports: {
     [arcTestnet.id]: http("https://rpc.testnet.arc.network"),
   },
-  ssr: true,
+  ssr: false,
 });
