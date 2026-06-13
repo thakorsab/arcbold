@@ -36,9 +36,9 @@ function Dashboard() {
         <motion.div initial="hidden" animate="show" className="relative text-center">
           <motion.h1 custom={0} variants={fadeUp} className="font-display font-black tracking-tighter leading-[0.9] italic text-[clamp(1.5rem,4.8vw,3.75rem)] whitespace-nowrap">
             <span className="text-white">SUPPLY </span>
-            <span className="text-gradient-smart">ARC.</span>
+            <span className="text-gradient-smart">ARC</span>
             <span className="text-white"> EARN </span>
-            <span className="text-gradient-bold">BOLD.</span>
+            <span className="text-gradient-bold">BOLD</span>
           </motion.h1>
           <motion.p custom={2} variants={fadeUp} className="mt-6 max-w-2xl mx-auto text-[#8892A4] text-base sm:text-lg">
             Cross-currency lending on Arc Testnet. Supply USDC, borrow EURC. Or flip it.
