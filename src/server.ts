@@ -4,6 +4,17 @@ async function getClientEntry() {
 }
 
 function renderClientShell(clientEntry: string) {
+  const devScripts = process.env.NODE_ENV === "development"
+    ? `<script type="module" src="/@vite/client"></script>
+    <script type="module">
+      import RefreshRuntime from "/@react-refresh";
+      RefreshRuntime.injectIntoGlobalHook(window);
+      window.$RefreshReg$ = () => {};
+      window.$RefreshSig$ = () => (type) => type;
+      window.__vite_plugin_react_preamble_installed__ = true;
+    </script>`
+    : "";
+
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -23,6 +34,7 @@ function renderClientShell(clientEntry: string) {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Orbitron:wght@500;700;900&display=swap" />
+    ${devScripts}
   </head>
   <body>
     <div id="root"></div>
