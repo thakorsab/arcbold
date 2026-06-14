@@ -1,7 +1,9 @@
 import { lazy, Suspense, type ReactNode } from "react";
+import { createClientOnlyFn } from "@tanstack/react-start";
 import { useHydrated } from "@tanstack/react-router";
 
-const ClientWeb3Provider = lazy(() => import("./provider.client"));
+const loadClientWeb3Provider = createClientOnlyFn(() => import("./provider.client"));
+const ClientWeb3Provider = lazy(loadClientWeb3Provider);
 
 export function Web3Provider({ children }: { children: ReactNode }) {
   const hydrated = useHydrated();
